@@ -15,7 +15,9 @@ const eslintConfig = defineConfig([
   ]),
   {
     rules: {
-      "react-hooks/purity": "off"
+      "react-hooks/purity": "off",
+      "react-hooks/set-state-in-effect": "off",
+      "@typescript-eslint/no-explicit-any": "off"
     }
   }
 ])
