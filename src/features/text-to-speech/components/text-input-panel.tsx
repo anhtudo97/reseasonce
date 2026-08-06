@@ -1,25 +1,34 @@
-import { Textarea } from "@/components/ui/textarea"
-import { useState } from "react"
-import { COST_PER_UNIT, TEXT_MAX_LENGTH } from "../data/constants"
 import { Badge } from "@/components/ui/badge"
+import { Textarea } from "@/components/ui/textarea"
+import { useTypedAppFormContext } from "@/hooks/use-app-form"
+import { useSelector } from "@tanstack/react-form"
 import { Coins } from "lucide-react"
+import { COST_PER_UNIT, TEXT_MAX_LENGTH } from "../data/constants"
+import { ttsFormOptions } from "./text-to-speech-form"
 
 export function TextInputPanel() {
-  const [text, setText] = useState("")
+  const form = useTypedAppFormContext(ttsFormOptions)
+
+  const text = useSelector(form.store, (s) => s.values.text)
+  const isSubmitting = useSelector(form.store, (s) => s.isSubmitting)
+  const isValid = useSelector(form.store, (s) => s.isValid)
 
   return (
     <div className="flex h-full min-h-0 flex-col flex-1">
       {/* Text input area */}
       <div className="relative min-h-0 flex-1">
-        <div>
-          <Textarea
-            value={text}
-            onChange={(e) => setText(e.target.value)}
-            placeholder="Start typing or paste your text here..."
-            className="absolute inset-0 resize-none border-0 bg-transparent p-4 pb-6 lg:p-6 lg:pb-8 text-base! leading-relaxed tracking-tight shadow-none wrap-break-word focus-visible:ring-0"
-            maxLength={TEXT_MAX_LENGTH}
-          />
-        </div>
+        <form.Field name="text">
+          {(field) => (
+            <Textarea
+              value={field.state.value}
+              onChange={(e) => field.handleChange(e.target.value)}
+              placeholder="Start typing or paste your text here..."
+              className="absolute inset-0 resize-none border-0 bg-transparent p-4 pb-6 lg:p-6 lg:pb-8 text-base! leading-relaxed tracking-tight shadow-none wrap-break-word focus-visible:ring-0"
+              maxLength={TEXT_MAX_LENGTH}
+              disabled={isSubmitting}
+            />
+          )}
+        </form.Field>
         {/* Bottom fade overlay */}
         <div className="pointer-events-none absolute inset-x-0 bottom-0 h-8 bg-linear-to-t from-background to-transparent" />
       </div>
