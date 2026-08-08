@@ -1,6 +1,8 @@
 import { History, Settings } from "lucide-react"
 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { SettingsPanelSettings } from "@/features/text-to-speech/components/settings-panel-settings"
+import { SettingsPanelHistory } from "@/features/text-to-speech/components/settings-panel-history"
 
 const tabTriggerClassName =
   "flex-1 h-full gap-2 bg-transparent rounded-none border-x-0 border-t-0 border-b-px border-b-transparent shadow-none data-[state=active]:border-b-foreground group-data-[variant=default]/tabs-list:data-[state=active]:shadow-none"
@@ -20,12 +22,10 @@ export function SettingsPanel() {
           </TabsTrigger>
         </TabsList>
         <TabsContent value="settings" className="mt-0 flex min-h-0 flex-1 flex-col overflow-y-auto">
-          {/* <SettingsPanelSettings /> */}
-          Settings panel content goes here.
+          <SettingsPanelSettings />
         </TabsContent>
         <TabsContent value="history" className="mt-0 flex min-h-0 flex-1 flex-col overflow-y-auto">
-          {/* <SettingsPanelHistory /> */}
-          History panel content goes here.
+          <SettingsPanelHistory />
         </TabsContent>
       </Tabs>
     </div>
