@@ -5,6 +5,7 @@ import { useSelector } from "@tanstack/react-form"
 import { Coins } from "lucide-react"
 import { COST_PER_UNIT, TEXT_MAX_LENGTH } from "../data/constants"
 import { ttsFormOptions } from "./text-to-speech-form"
+import { GenerateButton } from "./generate-button"
 
 export function TextInputPanel() {
   const form = useTypedAppFormContext(ttsFormOptions)
@@ -42,12 +43,12 @@ export function TextInputPanel() {
             </SettingsDrawer>
             <HistoryDrawer /> */}
           </div>
-          {/* <GenerateButton
+          <GenerateButton
             className="w-full"
             disabled={isSubmitting}
             isSubmitting={isSubmitting}
             onSubmit={() => form.handleSubmit()}
-          /> */}
+          />
         </div>
         {/* Desktop layout */}
         {text.length > 0 ? (
@@ -65,12 +66,12 @@ export function TextInputPanel() {
                   &nbsp;/&nbsp;{TEXT_MAX_LENGTH.toLocaleString()} characters
                 </span>
               </p>
-              {/* <GenerateButton
+              <GenerateButton
                 size="sm"
                 disabled={isSubmitting || !isValid}
                 isSubmitting={isSubmitting}
                 onSubmit={() => form.handleSubmit()}
-              /> */}
+              />
             </div>
           </div>
         ) : (
