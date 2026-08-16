@@ -6,8 +6,9 @@ import { Field, FieldGroup, FieldLabel } from "@/components/ui/field"
 import { Slider } from "@/components/ui/slider"
 import { useTypedAppFormContext } from "@/hooks/use-app-form"
 
-import { sliders } from "@/features/text-to-speech/data/sliders"
 import { ttsFormOptions } from "@/features/text-to-speech/components/text-to-speech-form"
+import { sliders } from "@/features/text-to-speech/data/sliders"
+import { VoiceSelector } from "./voice-selector"
 // import { VoiceSelector } from "@/features/text-to-speech/components/voice-selector"
 
 export function SettingsPanelSettings() {
@@ -17,7 +18,9 @@ export function SettingsPanelSettings() {
   return (
     <>
       {/* Voice Style Dropdown Section */}
-      <div className="border-b border-dashed p-4">{/* <VoiceSelector /> */}</div>
+      <div className="border-b border-dashed p-4">
+        <VoiceSelector />
+      </div>
 
       {/* Voice Adjustments Section */}
       <div className="p-4 flex-1">

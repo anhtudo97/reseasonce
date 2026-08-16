@@ -1,6 +1,6 @@
 "use client"
 
-import { useSelector, useStore } from "@tanstack/react-form"
+import { useSelector } from "@tanstack/react-form"
 
 import { VOICE_CATEGORY_LABELS } from "@/features/voices/data/voice-categories"
 
@@ -15,8 +15,8 @@ import {
   SelectTrigger,
   SelectValue
 } from "@/components/ui/select"
-import { useTypedAppFormContext } from "@/hooks/use-app-form"
 import { VoiceAvatar } from "@/components/voice-avatar/voice-avatar"
+import { useTypedAppFormContext } from "@/hooks/use-app-form"
 
 import { useTTSVoices } from "../contexts/tts-voices-context"
 import { ttsFormOptions } from "./text-to-speech-form"
