@@ -1,9 +1,13 @@
 "use client"
 
-import { useAppForm } from "@/hooks/use-app-form"
-import { formOptions } from "@tanstack/react-form"
-import { validators } from "tailwind-merge"
 import { z } from "zod"
+import { toast } from "sonner"
+import { useRouter } from "next/navigation"
+import { formOptions } from "@tanstack/react-form"
+import { useMutation } from "@tanstack/react-query"
+
+import { useTRPC } from "@/trpc/client"
+import { useAppForm } from "@/hooks/use-app-form"
 
 const ttsFormSchema = z.object({
   text: z.string().min(1, "Please enter some text"),
@@ -36,14 +40,45 @@ export function TextToSpeechForm({
   children: React.ReactNode
   defaultValues?: TTSFormValues
 }) {
+  const trpc = useTRPC()
+  const router = useRouter()
+  const createMutation = useMutation(trpc.generations.create.mutationOptions({}))
+
+  // const { checkout } = useCheckout()
+
   const form = useAppForm({
     ...ttsFormOptions,
     defaultValues: defaultValues ?? defaultTTSValues,
     validators: {
       onSubmit: ttsFormSchema
     },
-    onSubmit: async () => {
-      // Call the mutation to create a new generation
+    onSubmit: async ({ value }) => {
+      try {
+        const data = await createMutation.mutateAsync({
+          text: value.text.trim(),
+          voiceId: value.voiceId,
+          temperature: value.temperature,
+          topP: value.topP,
+          topK: value.topK,
+          repetitionPenalty: value.repetitionPenalty
+        })
+
+        toast.success("Audio generated successfully!")
+        router.push(`/text-to-speech/${data.id}`)
+      } catch (error) {
+        const message = error instanceof Error ? error.message : "Failed to generate audio"
+
+        if (message === "SUBSCRIPTION_REQUIRED") {
+          // toast.error("Subscription required", {
+          //   action: {
+          //     label: "Subscribe",
+          //     onClick: () => checkout()
+          //   }
+          // })
+        } else {
+          toast.error(message)
+        }
+      }
     }
   })
 
