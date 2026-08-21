@@ -20,8 +20,8 @@ import modal
 #   --output output.wav
 
 # R2 cloud bucket mount (read-only, replaces Modal Volume)
-R2_BUCKET_NAME = "reseasonce-app"
-R2_ACCOUNT_ID = "9de267ed8888d01f51d65f77500a703f"
+R2_BUCKET_NAME = "<bucket-name>"
+R2_ACCOUNT_ID = "<account-id>"
 R2_MOUNT_PATH = "/r2"
 r2_bucket = modal.CloudBucketMount(
     R2_BUCKET_NAME,
