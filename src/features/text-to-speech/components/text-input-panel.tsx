@@ -14,6 +14,7 @@ import { useTypedAppFormContext } from "@/hooks/use-app-form"
 import { COST_PER_UNIT, TEXT_MAX_LENGTH } from "@/features/text-to-speech/data/constants"
 import { GenerateButton } from "./generate-button"
 import { ttsFormOptions } from "./text-to-speech-form"
+import { PromptSuggestions } from "./prompt-suggestions"
 
 export function TextInputPanel() {
   const form = useTypedAppFormContext(ttsFormOptions)
@@ -84,7 +85,7 @@ export function TextInputPanel() {
           </div>
         ) : (
           <div className="hidden lg:block">
-            {/* <PromptSuggestions onSelect={(prompt) => form.setFieldValue("text", prompt)} /> */}
+            <PromptSuggestions onSelect={(prompt) => form.setFieldValue("text", prompt)} />
           </div>
         )}
       </div>
