@@ -1,11 +1,20 @@
+"use client"
+
+import { useSelector } from "@tanstack/react-form"
+import { Coins } from "lucide-react"
+
+import { HistoryDrawer } from "./history-drawer"
+import { SettingsDrawer } from "./settings-drawer"
+import { VoiceSelectorButton } from "./voice-selector-button"
+
 import { Badge } from "@/components/ui/badge"
 import { Textarea } from "@/components/ui/textarea"
 import { useTypedAppFormContext } from "@/hooks/use-app-form"
-import { useSelector } from "@tanstack/react-form"
-import { Coins } from "lucide-react"
-import { COST_PER_UNIT, TEXT_MAX_LENGTH } from "../data/constants"
-import { ttsFormOptions } from "./text-to-speech-form"
+
+import { COST_PER_UNIT, TEXT_MAX_LENGTH } from "@/features/text-to-speech/data/constants"
 import { GenerateButton } from "./generate-button"
+import { ttsFormOptions } from "./text-to-speech-form"
+import { PromptSuggestions } from "./prompt-suggestions"
 
 export function TextInputPanel() {
   const form = useTypedAppFormContext(ttsFormOptions)
@@ -38,10 +47,10 @@ export function TextInputPanel() {
         {/* Mobile layout */}
         <div className="flex flex-col gap-3 lg:hidden">
           <div className="flex items-center gap-2">
-            {/* <SettingsDrawer>
+            <SettingsDrawer>
               <VoiceSelectorButton />
             </SettingsDrawer>
-            <HistoryDrawer /> */}
+            <HistoryDrawer />
           </div>
           <GenerateButton
             className="w-full"
@@ -76,7 +85,7 @@ export function TextInputPanel() {
           </div>
         ) : (
           <div className="hidden lg:block">
-            {/* <PromptSuggestions onSelect={(prompt) => form.setFieldValue("text", prompt)} /> */}
+            <PromptSuggestions onSelect={(prompt) => form.setFieldValue("text", prompt)} />
           </div>
         )}
       </div>
