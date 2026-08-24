@@ -1,7 +1,9 @@
 import { clerkMiddleware, createRouteMatcher } from "@clerk/nextjs/server"
 import { NextResponse } from "next/server"
 
-const isPublicRoute = createRouteMatcher(["/sign-in(.*)", "/sign-up(.*)"])
+// "/api/tel" is Sentry's tunnelRoute (see next.config.ts). It must stay public: error reports are sent
+// by unauthenticated visitors too, and auth.protect() here would silently drop every client-side error.
+const isPublicRoute = createRouteMatcher(["/sign-in(.*)", "/sign-up(.*)", "/api/tel(.*)"])
 
 const isOrgSelectionRoute = createRouteMatcher(["/org-selection(.*)"])
 

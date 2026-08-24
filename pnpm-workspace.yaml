@@ -1,7 +1,8 @@
 packages:
-  - '.'
+  - "."
 allowBuilds:
-  '@prisma/engines': true
+  "@prisma/engines": true
+  "@sentry/cli": true
   esbuild: true
   prisma: true
   sharp: true

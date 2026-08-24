@@ -18,6 +18,13 @@ export const env = createEnv({
     CHATTERBOX_API_URL: z.url(),
     CHATTERBOX_API_KEY: z.string().min(1)
   },
-  experimental__runtimeEnv: {},
+  client: {
+    // Public Sentry DSN -- safe to expose, it only grants permission to send events.
+    NEXT_PUBLIC_SENTRY_DSN: z.url()
+  },
+  // Client vars must be listed here explicitly or createEnv throws at boot.
+  experimental__runtimeEnv: {
+    NEXT_PUBLIC_SENTRY_DSN: process.env.NEXT_PUBLIC_SENTRY_DSN
+  },
   skipValidation: !!process.env.SKIP_ENV_VALIDATION
 })
