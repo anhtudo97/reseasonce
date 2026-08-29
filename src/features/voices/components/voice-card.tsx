@@ -20,7 +20,7 @@ import { VoiceAvatar } from "@/components/voice-avatar/voice-avatar"
 import type { inferRouterOutputs } from "@trpc/server"
 import type { AppRouter } from "@/trpc/routers/_app"
 import { VOICE_CATEGORY_LABELS } from "@/features/voices/data/voice-categories"
-// import { useAudioPlayback } from "@/hooks/use-audio-playback"
+import { useAudioPlayback } from "@/hooks/use-audio-playback"
 import { useTRPC } from "@/trpc/client"
 import { useState } from "react"
 
@@ -48,7 +48,7 @@ export function VoiceCard({ voice }: VoiceCardProps) {
   const { flag, region } = parseLanguage(voice.language)
 
   const audioSrc = `/api/voices/${encodeURIComponent(voice.id)}`
-  //   const { isPlaying, isLoading, togglePlay } = useAudioPlayback(audioSrc)
+  const { isPlaying, isLoading, togglePlay } = useAudioPlayback(audioSrc)
 
   const trpc = useTRPC()
   const queryClient = useQueryClient()
@@ -96,7 +96,7 @@ export function VoiceCard({ voice }: VoiceCardProps) {
       </div>
 
       <div className="ml-1 flex shrink-0 items-center gap-1 lg:ml-3 lg:gap-2">
-        {/* <Button variant="outline" size="icon-sm" className="rounded-full" onClick={togglePlay} disabled={isLoading}>
+        <Button variant="outline" size="icon-sm" className="rounded-full" onClick={togglePlay} disabled={isLoading}>
           {isLoading ? (
             <Spinner className="size-4" />
           ) : isPlaying ? (
@@ -104,7 +104,7 @@ export function VoiceCard({ voice }: VoiceCardProps) {
           ) : (
             <Play className="size-4" />
           )}
-        </Button> */}
+        </Button>
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button variant="outline" size="icon-sm" className="rounded-full">
