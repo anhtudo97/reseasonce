@@ -6,6 +6,7 @@ import { useQueryState } from "nuqs"
 
 import { VoicesList } from "../components/voices-list"
 import { voicesSearchParams } from "../lib/params"
+import { VoicesToolbar } from "../components/voices-toolbar"
 
 function VoicesContent() {
   const trpc = useTRPC()
@@ -23,7 +24,7 @@ function VoicesContent() {
 export function VoicesView() {
   return (
     <div className="flex-1 space-y-10 overflow-y-auto p-3 lg:p-6">
-      {/* <VoicesToolbar /> */}
+      <VoicesToolbar />
       <VoicesContent />
     </div>
   )
