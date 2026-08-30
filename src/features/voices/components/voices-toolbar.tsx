@@ -1,10 +1,12 @@
-import { Search } from "lucide-react"
+import { Search, Sparkles } from "lucide-react"
 import { useQueryState } from "nuqs"
 import { useState } from "react"
 import { useDebouncedCallback } from "use-debounce"
 
 import { InputGroup, InputGroupAddon, InputGroupInput } from "@/components/ui/input-group"
 import { voicesSearchParams } from "@/features/voices/lib/params"
+import { VoiceCreateDialog } from "./voice-create-dialog"
+import { Button } from "@/components/ui/button"
 
 export function VoicesToolbar() {
   const [query, setQuery] = useQueryState("query", voicesSearchParams.query)
@@ -35,20 +37,20 @@ export function VoicesToolbar() {
             />
           </InputGroup>
           <div className="ml-auto hidden lg:block">
-            {/* <VoiceCreateDialog>
+            <VoiceCreateDialog>
               <Button size="sm">
                 <Sparkles />
                 Custom voice
               </Button>
-            </VoiceCreateDialog> */}
+            </VoiceCreateDialog>
           </div>
           <div className="lg:hidden">
-            {/* <VoiceCreateDialog>
+            <VoiceCreateDialog>
               <Button size="sm" className="w-full">
                 <Sparkles />
                 Custom voice
               </Button>
-            </VoiceCreateDialog> */}
+            </VoiceCreateDialog>
           </div>
         </div>
       </div>
