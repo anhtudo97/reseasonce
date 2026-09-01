@@ -59,6 +59,9 @@ importers:
       '@trpc/tanstack-react-query':
         specifier: ^11.18.0
         version: 11.18.0(@tanstack/react-query@5.101.4(react@19.2.4))(@trpc/client@11.18.0(@trpc/server@11.18.0(typescript@5.9.3))(typescript@5.9.3))(@trpc/server@11.18.0(typescript@5.9.3))(react@19.2.4)(typescript@5.9.3)
+      '@types/recordrtc':
+        specifier: ^5.6.15
+        version: 5.6.15
       class-variance-authority:
         specifier: ^0.7.1
         version: 0.7.1
@@ -131,6 +134,9 @@ importers:
       recharts:
         specifier: 3.8.0
         version: 3.8.0(@types/react@19.2.17)(react-dom@19.2.4(react@19.2.4))(react-is@16.13.1)(react@19.2.4)(redux@5.0.1)
+      recordrtc:
+        specifier: ^5.6.2
+        version: 5.6.2
       server-only:
         specifier: ^0.0.1
         version: 0.0.1
@@ -2919,6 +2925,9 @@ packages:
   '@types/react@19.2.17':
     resolution: {integrity: sha512-MXfmqaVPEVgkBT/aY0aGCkRWWtByiYQXo3xdQ8r5RzuFrPiRn8Gar2tQdXSUQ2GKV3bkXckek89V8wQBY2Q/Aw==}
 
+  '@types/recordrtc@5.6.15':
+    resolution: {integrity: sha512-Hml5qLCDfnACr5pYsbt+PbHQSCY4ynN/s84hx9szZz6B6zaTnX1jCUFLtdYWdxDLUKC6YuCaudm+fSpfnJ06tA==}
+
   '@types/use-sync-external-store@0.0.6':
     resolution: {integrity: sha512-zFDAD+tlpf2r4asuHEj0XH6pY6i0g5NeAHPn+15wk3BV6JA69eERFXC1gyGThDkVa1zCyKr5jox1+2LbV/AMLg==}
 
@@ -5543,6 +5552,9 @@ packages:
       react: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
       react-dom: ^16.0.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
       react-is: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
+
+  recordrtc@5.6.2:
+    resolution: {integrity: sha512-1QNKKNtl7+KcwD1lyOgP3ZlbiJ1d0HtXnypUy7yq49xEERxk31PHvE9RCciDrulPCY7WJ+oz0R9hpNxgsIurGQ==}
 
   redux-thunk@3.1.0:
     resolution: {integrity: sha512-NW2r5T6ksUKXCabzhL9z+h206HQw/NJkcLm1GPImRQ8IzfXwRGqjVhKJGauHirT0DAuyy6hjdnMZaRoAcy0Klw==}
@@ -9015,6 +9027,8 @@ snapshots:
     dependencies:
       csstype: 3.2.3
 
+  '@types/recordrtc@5.6.15': {}
+
   '@types/use-sync-external-store@0.0.6': {}
 
   '@types/validate-npm-package-name@4.0.2': {}
@@ -11768,6 +11782,8 @@ snapshots:
     transitivePeerDependencies:
       - '@types/react'
       - redux
+
+  recordrtc@5.6.2: {}
 
   redux-thunk@3.1.0(redux@5.0.1):
     dependencies:

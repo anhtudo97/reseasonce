@@ -37,6 +37,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"
 import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from "@/components/ui/command"
 import { VOICE_CATEGORIES, VOICE_CATEGORY_LABELS } from "@/features/voices/data/voice-categories"
+import { VoiceRecorder } from "./voice-recorder"
 
 const LANGUAGE_OPTIONS = locales.all
   .filter((l) => l.tag && l.tag.includes("-") && l.name)
@@ -301,7 +302,7 @@ export function VoiceCreateForm({ scrollable, footer, onError }: VoiceCreateForm
                     <FileDropzone file={field.state.value} onFileChange={field.handleChange} isInvalid={isInvalid} />
                   </TabsContent>
                   <TabsContent value="record">
-                    {/* <VoiceRecorder file={field.state.value} onFileChange={field.handleChange} isInvalid={isInvalid} /> */}
+                    <VoiceRecorder file={field.state.value} onFileChange={field.handleChange} isInvalid={isInvalid} />
                   </TabsContent>
                 </Tabs>
                 {isInvalid && <FieldError errors={field.state.meta.errors} />}
