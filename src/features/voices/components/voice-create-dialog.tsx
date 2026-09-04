@@ -1,6 +1,5 @@
 "use client"
 
-import { Button } from "@/components/ui/button"
 import {
   Dialog,
   DialogContent,
@@ -20,6 +19,9 @@ import {
   DrawerTrigger
 } from "@/components/ui/drawer"
 import { useIsMobile } from "@/hooks/use-mobile"
+import { VoiceCreateForm } from "./voice-create-form"
+import { Button } from "@/components/ui/button"
+import { useCheckout } from "@/features/billing/hooks/use-checkout"
 import { useCallback } from "react"
 import { toast } from "sonner"
 
@@ -32,22 +34,23 @@ interface VoiceCreateDialogProps {
 export function VoiceCreateDialog({ children, open, onOpenChange }: VoiceCreateDialogProps) {
   const isMobile = useIsMobile()
 
-  //   const { checkout } = useCheckout()
+  const { checkout } = useCheckout()
 
-  const handleError = useCallback((message: string) => {
-    if (message === "SUBSCRIPTION_REQUIRED") {
-      toast.error("Subscription required", {
-        action: {
-          label: "Subscribe",
-          onClick: () => {
-            // checkout()
+  const handleError = useCallback(
+    (message: string) => {
+      if (message === "SUBSCRIPTION_REQUIRED") {
+        toast.error("Subscription required", {
+          action: {
+            label: "Subscribe",
+            onClick: () => checkout()
           }
-        }
-      })
-    } else {
-      toast.error(message)
-    }
-  }, [])
+        })
+      } else {
+        toast.error(message)
+      }
+    },
+    [checkout]
+  )
 
   if (isMobile) {
     return (
@@ -58,7 +61,7 @@ export function VoiceCreateDialog({ children, open, onOpenChange }: VoiceCreateD
             <DrawerTitle>Create custom voice</DrawerTitle>
             <DrawerDescription>Upload or record an audio sample to add a new voice to your library.</DrawerDescription>
           </DrawerHeader>
-          {/* <VoiceCreateForm
+          <VoiceCreateForm
             scrollable
             onError={handleError}
             footer={(submit) => (
@@ -69,7 +72,7 @@ export function VoiceCreateDialog({ children, open, onOpenChange }: VoiceCreateD
                 </DrawerClose>
               </DrawerFooter>
             )}
-          /> */}
+          />
         </DrawerContent>
       </Drawer>
     )
@@ -83,7 +86,7 @@ export function VoiceCreateDialog({ children, open, onOpenChange }: VoiceCreateD
           <DialogTitle>Create custom voice</DialogTitle>
           <DialogDescription>Upload or record an audio sample to add a new voice to your library.</DialogDescription>
         </DialogHeader>
-        {/* <VoiceCreateForm onError={handleError} /> */}
+        <VoiceCreateForm onError={handleError} />
       </DialogContent>
     </Dialog>
   )
